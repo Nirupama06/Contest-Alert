@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="Contest.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contests Alert</title>
+</head>
+
+
+<body>
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+
+    <div class="container">
+        <table>
+            <tr class="header-row">
+                <th> Platform </th>
+                <th> Contest Name</th>
+                <th> Starts </th>
+                <th> Ends </th>
+                <th> Link </th>
+            </tr>
+            <!-- <tr>
+                <td><img src="./leetcode.svg"> Leetcode </td>
+                <td> Codeforces Round 736</td>
+                <td><br>July 31, 2021 <br> 20:05 </td>
+                <td><br>July 31, 2021 <br> 22:05 </td>
+                <td> Click here </td>
+            </tr> -->
+        </table>
+    </div>
+    
+
+</body>
+<script>
+    const cf = "https://kontests.net/api/v1/codeforces";
+    const cc = "https://kontests.net/api/v1/code_chef";
+    const lc = "https://kontests.net/api/v1/leet_code";
+    const ac = "https://kontests.net/api/v1/at_coder" ;
+    window.onload = load;
+    function formatTime(input) {
+        return new Date(input).toLocaleString(undefined, { timeZone: 'Asia/Kolkata' })
+    }
+    function load() {
+        fetch(cf).then((response) => response.json()).then(data => {
+            console.log(data);
+            data.forEach((item) =>
+                document.querySelector("table").innerHTML += `
+            <tr>
+                <td><img src="https://play-lh.googleusercontent.com/EkSlLWf2-04k5Y5F_MDLqoXPdo0TyZX3zKdCfsEUDqVB7INUypTOd6AVmkE_X7ej3JuR"> Codeforces </td>
+                <td> ${item.name}</td>
+                <td><br>${formatTime(item.start_time).split(",")[0]} <br>${formatTime(item.start_time).split(",")[1]}</td>
+                <td><br>${formatTime(item.end_time).split(",")[0]}  <br> ${formatTime(item.end_time).split(",")[1]} </td>
+                <td><a href=${item.url} target="_blank" rel="noopener noreferrer"> Click here</a> </td>
+            </tr>
+            `
+            )
+
+        })
+
+        fetch(cc).then((response) => response.json()).then(data => {
+            console.log(data);
+            data.forEach((item) =>
+                document.querySelector("table").innerHTML += `
+            <tr>
+                <td><img src="https://i.pinimg.com/originals/c5/d9/fc/c5d9fc1e18bcf039f464c2ab6cfb3eb6.jpg"> Codechef </td>
+                <td> ${item.name}</td>
+                <td><br>${formatTime(item.start_time).split(",")[0]} <br>${formatTime(item.start_time).split(",")[1]}</td>
+                <td><br>${formatTime(item.end_time).split(",")[0]}  <br> ${formatTime(item.end_time).split(",")[1]} </td>
+                <td><a href=${item.url} target="_blank" rel="noopener noreferrer"> Click here</a> </td>
+            </tr>
+            `
+            )
+
+        })
+
+        fetch(lc).then((response) => response.json()).then(data => {
+            console.log(data);
+            data.forEach((item) =>
+                document.querySelector("table").innerHTML += `
+            <tr>
+                <td><img src="https://leetcode.com/static/images/LeetCode_logo_rvs.png"> LeetCode </td>
+                <td> ${item.name}</td>
+                <td><br>${formatTime(item.start_time).split(",")[0]} <br>${formatTime(item.start_time).split(",")[1]}</td>
+                <td><br>${formatTime(item.end_time).split(",")[0]}  <br> ${formatTime(item.end_time).split(",")[1]} </td>
+                <td><a href=${item.url} target="_blank" rel="noopener noreferrer"> Click here</a> </td>
+            </tr>
+            `
+            )
+
+
+        })
+
+        fetch(ac).then((response) => response.json()).then(data => {
+            console.log(data);
+            data.forEach((item) =>
+                document.querySelector("table").innerHTML += `
+            <tr>
+                <td><img src="https://www.andreafiori.net/img/competitive-programming/atcoder.gif"> AtCoder </td>
+                <td> ${item.name}</td>
+                <td><br>${formatTime(item.start_time).split(",")[0]} <br>${formatTime(item.start_time).split(",")[1]}</td>
+                <td><br>${formatTime(item.end_time).split(",")[0]}  <br> ${formatTime(item.end_time).split(",")[1]} </td>
+                <td><a href=${item.url} target="_blank" rel="noopener noreferrer"> Click here</a> </td>
+            </tr>
+            `
+            )
+
+
+        })
+
+    }
+
+</script>
+<script type="text/javascript" src="vanilla-tilt.js"></script>
+            <script type="text/javascript">
+                VanillaTilt.init(document.querySelector(".container"), {
+                    max: 5,
+                    speed: 50,
+                    glare:true,   
+                    "max-glare":1, 
+                });
+                
+            </script>
+
+</html>
